@@ -33,6 +33,10 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
+      eqeqeq: ['error', 'always'],
+      'no-console': 'warn',
+      curly: ['error', 'multi-line'],
+      'arrow-body-style': ['error', 'as-needed'],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
