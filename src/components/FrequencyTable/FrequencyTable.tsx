@@ -1,3 +1,3 @@
-const FrequencyTable = () => null;
+const FrequencyTable = () => <table />;
 
 export default FrequencyTable;
