@@ -8,4 +8,12 @@ describe('TextForm', () => {
 
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
+
+  it('should display a translate button', () => {
+    render(<TextForm />);
+
+    expect(
+      screen.getByRole('button', { name: /translate/i }),
+    ).toBeInTheDocument();
+  });
 });
