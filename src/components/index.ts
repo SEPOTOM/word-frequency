@@ -1,3 +1,4 @@
+import FrequencyTable from '@/components/FrequencyTable/FrequencyTable';
 import TextForm from '@/components/TextForm/TextForm';
 
-export { TextForm };
+export { FrequencyTable, TextForm };
