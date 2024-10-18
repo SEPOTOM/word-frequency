@@ -2,7 +2,7 @@ import { FrequencyTable, TextForm } from '@/components';
 
 const App = () => (
   <>
-    <TextForm />
+    <TextForm maxChars={2048} />
     <FrequencyTable />
   </>
 );
