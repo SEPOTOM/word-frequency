@@ -1,5 +1,10 @@
-import { TextForm } from '@/components';
+import { FrequencyTable, TextForm } from '@/components';
 
-const App = () => <TextForm />;
+const App = () => (
+  <>
+    <TextForm />
+    <FrequencyTable />
+  </>
+);
 
 export default App;
