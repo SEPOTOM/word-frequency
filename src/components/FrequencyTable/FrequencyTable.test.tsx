@@ -8,4 +8,12 @@ describe('FrequencyTable', () => {
 
     expect(screen.getByRole('table')).toBeInTheDocument();
   });
+
+  it('should display a caption', () => {
+    render(<FrequencyTable />);
+
+    expect(
+      screen.getByRole('caption', { name: /frequency/i }),
+    ).toBeInTheDocument();
+  });
 });
