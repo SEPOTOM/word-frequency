@@ -1,3 +1,3 @@
-const TextForm = () => null;
+const TextForm = () => <textarea />;
 
 export default TextForm;
