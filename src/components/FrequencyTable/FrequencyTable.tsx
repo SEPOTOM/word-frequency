@@ -5,12 +5,14 @@ import { FrequencyTableProps } from './types';
 const FrequencyTable: FC<FrequencyTableProps> = ({ frequencyData }) => (
   <table>
     <caption>Frequency Table</caption>
-    {frequencyData.map(({ entity, repetitionsAmount }) => (
-      <tr key={`${entity}${repetitionsAmount}`}>
-        <td>{entity}</td>
-        <td>{repetitionsAmount}</td>
-      </tr>
-    ))}
+    <tbody>
+      {frequencyData.map(({ entity, repetitionsAmount }) => (
+        <tr key={`${entity}${repetitionsAmount}`}>
+          <td>{entity}</td>
+          <td>{repetitionsAmount}</td>
+        </tr>
+      ))}
+    </tbody>
   </table>
 );
 
