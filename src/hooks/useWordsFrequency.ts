@@ -5,6 +5,10 @@ const useWordsFrequency = (text: string): FrequencyDatum[] => {
   const indexes: Record<string, number> = {};
 
   text.split(' ').forEach((word) => {
+    if (word === '') {
+      return;
+    }
+
     if (word in indexes) {
       result[indexes[word]].repetitionsAmount += 1;
     } else {
