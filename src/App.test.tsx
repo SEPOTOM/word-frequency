@@ -1,7 +1,7 @@
 import { renderWithUser } from '@/tests';
 
 import App from './App';
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 describe('App', () => {
   it('should properly calculate and display the number of repetitions for a word sequence', async () => {
@@ -14,5 +14,11 @@ describe('App', () => {
     expect(screen.getByRole('row', { name: /work 2/i })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: /test 3/i })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: /add 3/i })).toBeInTheDocument();
+  });
+
+  it("shouldn't display any table rows on the initial load", () => {
+    render(<App />);
+
+    expect(screen.queryAllByRole('row').length).toBe(0);
   });
 });
