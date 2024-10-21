@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { FrequencyTable, TextForm } from '@/components';
+import { FrequencyCharts, FrequencyTable, TextForm } from '@/components';
 import { useWordsFrequency } from '@/hooks';
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
     <>
       <TextForm maxChars={2048} onSubmit={handleSubmit} />
       <FrequencyTable frequencyData={wordsFrequency} />
+      <FrequencyCharts frequencyData={wordsFrequency} />
     </>
   );
 };
