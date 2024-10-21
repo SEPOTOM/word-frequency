@@ -22,4 +22,17 @@ describe('App', () => {
 
     expect(screen.queryAllByRole('row').length).toBe(0);
   });
+
+  it('should display words frequency in the descending order by default', async () => {
+    const testText = 'one two two three three three';
+    const { user } = renderWithUser(<App />);
+
+    await user.type(screen.getByRole('textbox'), testText);
+    await user.click(screen.getByRole('button', { name: /translate/i }));
+
+    const rows = screen.getAllByRole('row');
+    expect(rows[0]).toHaveTextContent(/3/i);
+    expect(rows[1]).toHaveTextContent(/2/i);
+    expect(rows[2]).toHaveTextContent(/1/i);
+  });
 });
