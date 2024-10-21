@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { FrequencyTable, TextForm } from '@/components';
-import useWordsFrequency from '@/hooks/useWordsFrequency';
+import { useWordsFrequency } from '@/hooks';
 
 const App = () => {
   const [text, setText] = useState('');
