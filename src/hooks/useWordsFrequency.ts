@@ -2,18 +2,18 @@ import { FrequencyDatum } from '@/types';
 
 const useWordsFrequency = (text: string): FrequencyDatum[] => {
   const result: FrequencyDatum[] = [];
-  const indexes: Record<string, number> = {};
+  const indexes = new Map<string, number>();
 
   text.split(' ').forEach((word) => {
     if (word === '') {
       return;
     }
 
-    if (word in indexes) {
-      result[indexes[word]].repetitionsAmount += 1;
+    if (indexes.has(word)) {
+      result[indexes.get(word) ?? -1].repetitionsAmount += 1;
     } else {
       const newLength = result.push({ entity: word, repetitionsAmount: 1 });
-      indexes[word] = newLength - 1;
+      indexes.set(word, newLength - 1);
     }
   });
 
