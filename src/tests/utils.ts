@@ -1,6 +1,7 @@
+import { ReactNode } from 'react';
+
 import { RenderOptions, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ReactNode } from 'react';
 
 import { ExtendedRenderResults } from './types';
 
