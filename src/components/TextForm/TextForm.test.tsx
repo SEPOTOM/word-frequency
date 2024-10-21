@@ -31,4 +31,10 @@ describe('TextForm', () => {
 
     expect(textarea).toHaveDisplayValue(inputText);
   });
+
+  it('should display an error message when the textbox is empty', () => {
+    render(<TextForm maxChars={0} onSubmit={() => null} />);
+
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+  });
 });
