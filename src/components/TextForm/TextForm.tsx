@@ -4,6 +4,7 @@ import { TextFormProps } from './types';
 
 const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
   const [text, setText] = useState('');
+  const isError = text === '';
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value.slice(0, maxChars));
@@ -19,6 +20,7 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
       <button type="button" onClick={handleClick}>
         Translate
       </button>
+      {isError && <p role="alert">The textbox is empty</p>}
     </>
   );
 };
