@@ -17,7 +17,7 @@ const useWordsFrequency = (text: string): FrequencyDatum[] => {
     }
   });
 
-  return result;
+  return result.sort((a, b) => b.repetitionsAmount - a.repetitionsAmount);
 };
 
 export default useWordsFrequency;
