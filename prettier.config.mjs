@@ -1,5 +1,11 @@
 export default {
   experimentalTernaries: true,
   singleQuote: true,
-  plugins: ['prettier-plugin-tailwindcss'],
+  importOrder: ['^react(.*)$', '<THIRD_PARTY_MODULES>', '^@/(.*)$', '^[./]'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  plugins: [
+    '@trivago/prettier-plugin-sort-imports',
+    'prettier-plugin-tailwindcss',
+  ],
 };
