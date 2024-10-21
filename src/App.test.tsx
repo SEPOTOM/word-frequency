@@ -1,7 +1,8 @@
+import { render, screen } from '@testing-library/react';
+
 import { renderWithUser } from '@/tests';
 
 import App from './App';
-import { render, screen } from '@testing-library/react';
 
 describe('App', () => {
   it('should properly calculate and display the number of repetitions for a word sequence', async () => {
