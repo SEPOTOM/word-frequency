@@ -10,17 +10,29 @@ import {
   YAxis,
 } from 'recharts';
 
+import { getTailwindConfig } from '@/utils';
+
 import { FrequencyChartsProps } from './types';
 
-const FrequencyCharts: FC<FrequencyChartsProps> = ({ frequencyData }) => (
-  <BarChart width={1400} height={400} data={frequencyData}>
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="entity" />
-    <YAxis />
-    <Tooltip />
-    <Legend />
-    <Bar dataKey="repetitionsAmount" fill="#8884d8" />
-  </BarChart>
-);
+const FrequencyCharts: FC<FrequencyChartsProps> = ({ frequencyData }) => {
+  const tailwindConfig = getTailwindConfig();
+
+  return (
+    <div className="container px-2">
+      <BarChart width={304} height={400} data={frequencyData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="entity" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar
+          dataKey="repetitionsAmount"
+          name="Repetitions"
+          fill={tailwindConfig.theme.colors.main}
+        />
+      </BarChart>
+    </div>
+  );
+};
 
 export default FrequencyCharts;
