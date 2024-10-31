@@ -5,7 +5,9 @@ export default {
     extend: {
       colors: {
         main: '#64113F',
+        'main-dark': '#3D0A26',
         secondary: '#F5F7DC',
+        error: '#EA2B1F',
       },
     },
   },
