@@ -15,13 +15,25 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
   };
 
   return (
-    <>
-      <textarea value={text} onChange={handleChange} />
-      <button type="button" onClick={handleClick}>
+    <div className="container mx-auto flex flex-col gap-y-3 px-2">
+      <textarea
+        value={text}
+        onChange={handleChange}
+        className="min-h-40 w-full rounded-md bg-main p-2 text-lg text-secondary"
+      />
+      {isError && (
+        <p role="alert" className="text-center font-bold text-error">
+          ! The textbox is empty !
+        </p>
+      )}
+      <button
+        type="button"
+        onClick={handleClick}
+        className="w-full rounded-md border-4 border-main bg-inherit text-3xl font-bold text-main transition-colors hover:bg-main hover:text-secondary active:border-main-dark active:bg-main-dark active:transition-none"
+      >
         Translate
       </button>
-      {isError && <p role="alert">The textbox is empty</p>}
-    </>
+    </div>
   );
 };
 
