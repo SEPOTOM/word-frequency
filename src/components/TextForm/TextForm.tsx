@@ -15,7 +15,7 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
   };
 
   return (
-    <div className="container mx-auto flex flex-col gap-y-3 px-2">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-y-3 px-2">
       <textarea
         value={text}
         onChange={handleChange}
