@@ -5,14 +5,19 @@ import { FrequencyDatum } from '@/types';
 import FrequencyTable from './FrequencyTable';
 
 describe('FrequencyTable', () => {
+  const fakeFrequencyDatum: FrequencyDatum = {
+    repetitionsAmount: 2,
+    entity: 'Test',
+  };
+
   it('should display a table', () => {
-    render(<FrequencyTable frequencyData={[]} />);
+    render(<FrequencyTable frequencyData={[fakeFrequencyDatum]} />);
 
     expect(screen.getByRole('table')).toBeInTheDocument();
   });
 
   it('should display a caption', () => {
-    render(<FrequencyTable frequencyData={[]} />);
+    render(<FrequencyTable frequencyData={[fakeFrequencyDatum]} />);
 
     expect(
       screen.getByRole('caption', { name: /frequency/i }),
@@ -44,5 +49,11 @@ describe('FrequencyTable', () => {
     expect(secondRowCells.length).toBe(2);
     expect(secondRowCells[0]).toHaveTextContent('Title');
     expect(secondRowCells[1]).toHaveTextContent('57');
+  });
+
+  it('does not render anything when the received frequency data is empty', () => {
+    render(<FrequencyTable frequencyData={[]} />);
+
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
   });
 });
