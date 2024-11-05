@@ -47,5 +47,24 @@ describe('TextForm', () => {
 
       expect(screen.getByRole('status')).toHaveTextContent(maxCharsRegExp);
     });
+
+    it('should decrease the remaining character count when the user types', async () => {
+      const maxChars = 15;
+      const textForInput = 'test';
+      const expectedCounterValue = maxChars - textForInput.length;
+      const expectedCounterValueRegExp = new RegExp(
+        `${expectedCounterValue}`,
+        'i',
+      );
+      const { user } = renderWithUser(
+        <TextForm maxChars={maxChars} onSubmit={() => null} />,
+      );
+
+      await user.type(screen.getByRole('textbox'), textForInput);
+
+      expect(screen.getByRole('status')).toHaveTextContent(
+        expectedCounterValueRegExp,
+      );
+    });
   });
 });
