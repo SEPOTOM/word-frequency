@@ -4,10 +4,15 @@ import { TextFormProps } from './types';
 
 const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
   const [text, setText] = useState('');
+  const [remainingChars, setRemainingChars] = useState(maxChars);
+
   const isError = text === '';
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value.slice(0, maxChars));
+    const textForInput = e.target.value.slice(0, maxChars);
+
+    setText(textForInput);
+    setRemainingChars(maxChars - textForInput.length);
   };
 
   const handleClick = () => {
@@ -22,7 +27,7 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
         aria-live="polite"
         className="text-xl font-bold text-main"
       >
-        Characters left: <span className="font-black">{maxChars}</span>
+        Characters left: <span className="font-black">{remainingChars}</span>
       </div>
       <textarea
         value={text}
