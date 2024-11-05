@@ -1,12 +1,15 @@
 import { ChangeEvent, FC, useState } from 'react';
 
+import clsx from 'clsx';
+
 import { TextFormProps } from './types';
 
 const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
   const [text, setText] = useState('');
-  const [remainingChars, setRemainingChars] = useState(maxChars);
-
   const isError = text === '';
+
+  const [remainingChars, setRemainingChars] = useState(maxChars);
+  const maxCharsTenPercent = maxChars / 10;
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const textForInput = e.target.value.slice(0, maxChars);
@@ -27,7 +30,15 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
         aria-live="polite"
         className="text-xl font-bold text-main"
       >
-        Characters left: <span className="font-black">{remainingChars}</span>
+        Characters left:{' '}
+        <span
+          className={clsx(
+            'font-black',
+            remainingChars < maxCharsTenPercent && 'text-error',
+          )}
+        >
+          {remainingChars}
+        </span>
       </div>
       <textarea
         value={text}
