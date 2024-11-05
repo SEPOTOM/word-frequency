@@ -16,9 +16,18 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-y-3 px-2">
+      <div
+        id="character-counter"
+        role="status"
+        aria-live="polite"
+        className="text-xl font-bold text-main"
+      >
+        Characters left: <span className="font-black">{maxChars}</span>
+      </div>
       <textarea
         value={text}
         onChange={handleChange}
+        aria-describedby="character-counter"
         className="min-h-40 w-full rounded-md bg-main p-2 text-lg text-secondary"
       />
       {isError && (
