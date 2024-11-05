@@ -66,5 +66,23 @@ describe('TextForm', () => {
         expectedCounterValueRegExp,
       );
     });
+
+    it('should update the remaining character count after the user deletes characters', async () => {
+      const expectedCounterValue = 14;
+      const expectedCounterValueRegExp = new RegExp(
+        `${expectedCounterValue}`,
+        'i',
+      );
+      const { user } = renderWithUser(
+        <TextForm maxChars={15} onSubmit={() => null} />,
+      );
+
+      await user.type(screen.getByRole('textbox'), 'test');
+      await user.type(screen.getByRole('textbox'), '{backspace>3}');
+
+      expect(screen.getByRole('status')).toHaveTextContent(
+        expectedCounterValueRegExp,
+      );
+    });
   });
 });
