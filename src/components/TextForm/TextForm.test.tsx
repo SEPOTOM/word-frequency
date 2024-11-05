@@ -38,12 +38,14 @@ describe('TextForm', () => {
     expect(screen.getByRole('alert')).toBeInTheDocument();
   });
 
-  it('should display a characters counter with the maximum limit by default', () => {
-    const maxChars = 20;
-    const maxCharsRegExp = new RegExp(`${maxChars}`, 'i');
+  describe('characters counter', () => {
+    it('should display the maximum chars limit by default', () => {
+      const maxChars = 20;
+      const maxCharsRegExp = new RegExp(`${maxChars}`, 'i');
 
-    render(<TextForm maxChars={maxChars} onSubmit={() => null} />);
+      render(<TextForm maxChars={maxChars} onSubmit={() => null} />);
 
-    expect(screen.getByRole('status')).toHaveTextContent(maxCharsRegExp);
+      expect(screen.getByRole('status')).toHaveTextContent(maxCharsRegExp);
+    });
   });
 });
