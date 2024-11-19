@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { renderWithUser } from '@/tests';
+import { ParsingOptions } from '@/types';
 
 import App from './App';
 
@@ -34,5 +35,14 @@ describe('App', () => {
     expect(rows[0]).toHaveTextContent(/3/i);
     expect(rows[1]).toHaveTextContent(/2/i);
     expect(rows[2]).toHaveTextContent(/1/i);
+  });
+
+  describe('should have correct default parsing options', () => {
+    it('case sensitive should be checked', () => {
+      const optionName = 'caseSensitive' satisfies keyof ParsingOptions;
+      render(<App />);
+
+      expect(screen.getByRole('checkbox', { name: optionName })).toBeChecked();
+    });
   });
 });
