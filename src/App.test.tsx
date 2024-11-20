@@ -45,4 +45,17 @@ describe('App', () => {
       expect(screen.getByRole('checkbox', { name: optionName })).toBeChecked();
     });
   });
+
+  describe('parsing options', () => {
+    it('should ignore the case of words when the case sensitive is unchecked', async () => {
+      const optionName = 'caseSensitive' satisfies keyof ParsingOptions;
+      const { user } = renderWithUser(<App />);
+
+      await user.click(screen.getByRole('checkbox', { name: optionName }));
+      await user.type(screen.getByRole('textbox'), 'word WORD wORd');
+      await user.click(screen.getByRole('button', { name: /translate/i }));
+
+      expect(screen.getAllByRole('row').length).toBe(1);
+    });
+  });
 });
