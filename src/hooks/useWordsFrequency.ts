@@ -1,4 +1,5 @@
 import { FrequencyDatum, ParsingOptions } from '@/types';
+import { isLetter } from '@/utils';
 
 const useWordsFrequency = (
   text: string,
@@ -6,8 +7,9 @@ const useWordsFrequency = (
 ): FrequencyDatum[] => {
   const result: FrequencyDatum[] = [];
   const indexes = new Map<string, number>();
+  const separator = options?.lettersOnly ? '' : /[\s\p{P}]+/u;
 
-  let words: string[] | Set<string> = text.split(/[\s\p{P}]+/u);
+  let words: string[] | Set<string> = text.split(separator);
 
   if (!options?.caseSensitive) {
     const lowercasedWords = words.map((word) => word.toLowerCase());
@@ -16,6 +18,10 @@ const useWordsFrequency = (
 
   words.forEach((word) => {
     if (word === '') {
+      return;
+    }
+
+    if (options?.lettersOnly && !isLetter(word)) {
       return;
     }
 
