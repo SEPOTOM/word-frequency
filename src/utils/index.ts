@@ -1,3 +1,4 @@
+import { isLetter } from '@/utils/strings';
 import { getTailwindConfig } from '@/utils/styles';
 
-export { getTailwindConfig };
+export { isLetter, getTailwindConfig };
