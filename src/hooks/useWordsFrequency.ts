@@ -1,10 +1,20 @@
-import { FrequencyDatum } from '@/types';
+import { FrequencyDatum, ParsingOptions } from '@/types';
 
-const useWordsFrequency = (text: string): FrequencyDatum[] => {
+const useWordsFrequency = (
+  text: string,
+  options?: ParsingOptions,
+): FrequencyDatum[] => {
   const result: FrequencyDatum[] = [];
   const indexes = new Map<string, number>();
 
-  text.split(' ').forEach((word) => {
+  let words: string[] | Set<string> = text.split(' ');
+
+  if (!options?.caseSensitive) {
+    const lowercasedWords = words.map((word) => word.toLowerCase());
+    words = new Set(lowercasedWords);
+  }
+
+  words.forEach((word) => {
     if (word === '') {
       return;
     }

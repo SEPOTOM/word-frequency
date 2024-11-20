@@ -14,7 +14,7 @@ const App = () => {
   const [parsingOptions, setParsingOptions] = useState<ParsingOptions>({
     caseSensitive: true,
   });
-  const wordsFrequency = useWordsFrequency(text);
+  const wordsFrequency = useWordsFrequency(text, parsingOptions);
 
   const handleSubmit = (newText: string) => {
     setText(newText);
