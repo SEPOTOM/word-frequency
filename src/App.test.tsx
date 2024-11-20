@@ -57,6 +57,15 @@ describe('App', () => {
 
       expect(screen.getByRole('checkbox', { name: optionName })).toBeChecked();
     });
+
+    it('letters only should be checked', () => {
+      const optionName = 'lettersOnly' satisfies keyof ParsingOptions;
+      render(<App />);
+
+      expect(
+        screen.getByRole('checkbox', { name: optionName }),
+      ).not.toBeChecked();
+    });
   });
 
   describe('parsing options', () => {
