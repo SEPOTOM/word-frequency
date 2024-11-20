@@ -7,7 +7,7 @@ const useWordsFrequency = (
   const result: FrequencyDatum[] = [];
   const indexes = new Map<string, number>();
 
-  let words: string[] | Set<string> = text.split(' ');
+  let words: string[] | Set<string> = text.split(/\s+/);
 
   if (!options?.caseSensitive) {
     const lowercasedWords = words.map((word) => word.toLowerCase());
