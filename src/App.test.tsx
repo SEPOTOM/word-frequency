@@ -37,6 +37,19 @@ describe('App', () => {
     expect(rows[2]).toHaveTextContent(/1/i);
   });
 
+  it('should ignore punctuation marks by default', async () => {
+    const { user } = renderWithUser(<App />);
+
+    await user.type(screen.getByRole('textbox'), 'This!? is — a :test…');
+    await user.click(screen.getByRole('button', { name: /translate/i }));
+
+    expect(screen.getAllByRole('row').length).toBe(4);
+    expect(screen.getByRole('cell', { name: 'This' })).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: 'is' })).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: 'a' })).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: 'test' })).toBeInTheDocument();
+  });
+
   describe('should have correct default parsing options', () => {
     it('case sensitive should be checked', () => {
       const optionName = 'caseSensitive' satisfies keyof ParsingOptions;
