@@ -1,6 +1,7 @@
-import { ChangeEvent, FC } from 'react';
+import { FC } from 'react';
 
-import { ParsingOptions } from '@/types';
+import { Checkbox } from '@/components';
+import { CheckboxChangeEvent, ParsingOptions } from '@/types';
 
 import { ParsingOptionsPanelProps } from './types';
 
@@ -8,12 +9,12 @@ const ParsingOptionsPanel: FC<ParsingOptionsPanelProps> = ({
   options,
   onOptionsChange,
 }) => {
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const optionName = e.currentTarget.name as keyof ParsingOptions;
+  const onChange = (e: CheckboxChangeEvent) => {
+    const optionName = e.target.name as keyof ParsingOptions;
 
     onOptionsChange({
       ...options,
-      [optionName]: !options[optionName],
+      [optionName]: e.target.checked,
     });
   };
 
@@ -26,8 +27,7 @@ const ParsingOptionsPanel: FC<ParsingOptionsPanelProps> = ({
         >
           <label className="flex items-center justify-between gap-x-3">
             {optionKey}
-            <input
-              type="checkbox"
+            <Checkbox
               name={optionKey}
               checked={options[optionKey as keyof ParsingOptions]}
               onChange={onChange}
