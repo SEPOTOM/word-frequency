@@ -1,12 +1,13 @@
 import { FrequencyDatum, ParsingOptions } from '@/types';
 import { isLetter } from '@/utils';
 
+import { IgnoreFunc } from './types';
+import { calculateFrequency } from './utils';
+
 const useWordsFrequency = (
   text: string,
   options?: ParsingOptions,
 ): FrequencyDatum[] => {
-  const result: FrequencyDatum[] = [];
-  const indexes = new Map<string, number>();
   const separator = options?.lettersOnly ? '' : /[\s\p{P}]+/u;
 
   let words: string[] | Set<string> = text.split(separator);
@@ -16,22 +17,13 @@ const useWordsFrequency = (
     words = new Set(lowercasedWords);
   }
 
-  words.forEach((word) => {
-    if (word === '') {
-      return;
-    }
+  let shouldIgnoreWord: Nullable<IgnoreFunc> = null;
 
-    if (options?.lettersOnly && !isLetter(word)) {
-      return;
-    }
+  if (options?.lettersOnly) {
+    shouldIgnoreWord = (word: string) => !isLetter(word);
+  }
 
-    if (indexes.has(word)) {
-      result[indexes.get(word) ?? -1].repetitionsAmount += 1;
-    } else {
-      const newLength = result.push({ entity: word, repetitionsAmount: 1 });
-      indexes.set(word, newLength - 1);
-    }
-  });
+  const result = calculateFrequency(words, shouldIgnoreWord);
 
   return result.sort((a, b) => b.repetitionsAmount - a.repetitionsAmount);
 };

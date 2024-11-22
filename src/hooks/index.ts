@@ -1,3 +1,3 @@
-import useWordsFrequency from '@/hooks/useWordsFrequency';
+import useWordsFrequency from '@/hooks/useWordsFrequency/useWordsFrequency';
 
 export { useWordsFrequency };
