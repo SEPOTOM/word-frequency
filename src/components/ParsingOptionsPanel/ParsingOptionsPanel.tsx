@@ -18,17 +18,20 @@ const ParsingOptionsPanel: FC<ParsingOptionsPanelProps> = ({
   };
 
   return (
-    <ul>
+    <ul className="mx-auto flex w-full max-w-3xl flex-col gap-y-3 px-2 text-lg font-bold text-main">
       {Object.keys(options).map((optionKey) => (
-        <li key={optionKey}>
-          <label>
+        <li
+          key={optionKey}
+          className="last:border-b-2 last:border-main last:pb-2"
+        >
+          <label className="flex items-center justify-between gap-x-3">
+            {optionKey}
             <input
               type="checkbox"
               name={optionKey}
               checked={options[optionKey as keyof ParsingOptions]}
               onChange={onChange}
             />
-            {optionKey}
           </label>
         </li>
       ))}
