@@ -1,5 +1,5 @@
 import { FrequencyDatum, ParsingOptions } from '@/types';
-import { isLetter } from '@/utils';
+import { FREQUENCY_DATUM_AMOUNT, isLetter, shortenResult } from '@/utils';
 
 import { IgnoreFunc } from './types';
 import { calculateFrequency } from './utils';
@@ -23,8 +23,11 @@ const useWordsFrequency = (
   }
 
   const result = calculateFrequency(words, shouldIgnoreWord);
+  const shortenedResult = shortenResult(result, FREQUENCY_DATUM_AMOUNT);
 
-  return result.sort((a, b) => b.repetitionsAmount - a.repetitionsAmount);
+  return shortenedResult.sort(
+    (a, b) => b.repetitionsAmount - a.repetitionsAmount,
+  );
 };
 
 export default useWordsFrequency;
