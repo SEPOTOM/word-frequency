@@ -38,4 +38,21 @@ describe('shortenResult', () => {
 
     expect(result.length).toBe(1);
   });
+
+  it('returns an array where the last element has all the squashed entities', () => {
+    const input: [FrequencyDatum[], number] = [
+      [
+        { entity: 'Test', repetitionsAmount: 2 },
+        { entity: 'Word', repetitionsAmount: 2 },
+        { entity: 'Adam', repetitionsAmount: 2 },
+        { entity: 'Pill', repetitionsAmount: 2 },
+        { entity: 'Lipstick', repetitionsAmount: 2 },
+      ],
+      2,
+    ];
+
+    const result = shortenResult(...input);
+
+    expect(result[1].entity).toBe('Word, Adam, Pill, Lipstick');
+  });
 });
