@@ -24,4 +24,18 @@ describe('shortenResult', () => {
 
     expect(result).toBe(input[0]);
   });
+
+  it('should return the shortened array if its length is too long', () => {
+    const input: [FrequencyDatum[], number] = [
+      [
+        { entity: 'Test', repetitionsAmount: 2 },
+        { entity: 'Word', repetitionsAmount: 2 },
+      ],
+      1,
+    ];
+
+    const result = shortenResult(...input);
+
+    expect(result.length).toBe(1);
+  });
 });
