@@ -77,7 +77,7 @@ describe('App', () => {
       await user.type(screen.getByRole('textbox'), 'word WORD wORd');
       await user.click(screen.getByRole('button', { name: /translate/i }));
 
-      expect(screen.getAllByRole('row').length).toBe(1);
+      expect(screen.getByRole('row', { name: /word 3/ })).toBeInTheDocument();
     });
 
     it('should calculate the number of each letter when the lettersOnly is checked', async () => {
