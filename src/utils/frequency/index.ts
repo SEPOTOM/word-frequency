@@ -9,7 +9,15 @@ export const shortenResult = (
   }
 
   const shortenedResult = [...fullResult];
-  shortenedResult.length = neededLength;
+
+  while (shortenedResult.length > neededLength) {
+    const deletedDatum = shortenedResult.pop();
+    const lastDatum = shortenedResult.at(-1);
+
+    if (lastDatum) {
+      lastDatum.entity += `, ${deletedDatum?.entity}`;
+    }
+  }
 
   return shortenedResult;
 };
