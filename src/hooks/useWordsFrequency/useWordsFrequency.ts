@@ -13,8 +13,7 @@ const useWordsFrequency = (
   let words: string[] | Set<string> = text.split(separator);
 
   if (!options?.caseSensitive) {
-    const lowercasedWords = words.map((word) => word.toLowerCase());
-    words = new Set(lowercasedWords);
+    words = words.map((word) => word.toLowerCase());
   }
 
   let shouldIgnoreWord: Nullable<IgnoreFunc> = null;
