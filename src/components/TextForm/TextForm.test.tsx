@@ -44,6 +44,17 @@ describe('TextForm', () => {
     expect(screen.getByRole('alert')).toBeInTheDocument();
   });
 
+  it('should clear the text input after clicking on the clear button', async () => {
+    const { user } = renderWithUser(
+      <TextForm maxChars={50} onSubmit={() => null} />,
+    );
+
+    await user.type(screen.getByRole('textbox'), 'some text');
+    await user.click(screen.getByRole('button', { name: /clear/i }));
+
+    expect(screen.getByRole('textbox')).toHaveDisplayValue('');
+  });
+
   describe('characters counter', () => {
     it('should display the maximum chars limit by default', () => {
       const maxChars = 20;
