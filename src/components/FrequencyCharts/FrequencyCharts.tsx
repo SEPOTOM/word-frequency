@@ -16,6 +16,7 @@ import {
 
 import { getTailwindConfig } from '@/utils';
 
+import CustomTooltip from './CustomTooltip';
 import { FrequencyChartsProps } from './types';
 
 const FrequencyCharts: FC<FrequencyChartsProps> = ({ frequencyData }) => {
@@ -35,7 +36,7 @@ const FrequencyCharts: FC<FrequencyChartsProps> = ({ frequencyData }) => {
       >
         {isMobile ?
           <PieChart className="w-full">
-            <Tooltip />
+            <Tooltip content={<CustomTooltip type="pie" />} />
             <Pie
               data={frequencyData}
               dataKey="repetitionsAmount"
@@ -48,7 +49,7 @@ const FrequencyCharts: FC<FrequencyChartsProps> = ({ frequencyData }) => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="entity" />
             <YAxis />
-            <Tooltip />
+            <Tooltip content={<CustomTooltip type="bar" />} />
             <Legend />
             <Bar
               dataKey="repetitionsAmount"
