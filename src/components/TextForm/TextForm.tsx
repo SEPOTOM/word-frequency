@@ -22,6 +22,10 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
     onSubmit(text);
   };
 
+  const handleClear = () => {
+    setText('');
+  };
+
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-y-3 px-2">
       <div className="flex items-center justify-between gap-5">
@@ -44,6 +48,7 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
 
         <button
           type="button"
+          onClick={handleClear}
           className="rounded-md border-2 border-error bg-inherit px-2 text-xl font-bold text-error transition-colors hover:bg-error hover:text-secondary active:border-error-dark active:bg-error-dark active:transition-none"
         >
           Clear
