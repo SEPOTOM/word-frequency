@@ -23,11 +23,11 @@ const useWordsFrequency = (
   }
 
   const result = calculateFrequency(words, shouldIgnoreWord);
-  const shortenedResult = shortenResult(result, FREQUENCY_DATUM_AMOUNT);
-
-  return shortenedResult.sort(
+  const sortedResult = result.sort(
     (a, b) => b.repetitionsAmount - a.repetitionsAmount,
   );
+
+  return shortenResult(sortedResult, FREQUENCY_DATUM_AMOUNT);
 };
 
 export default useWordsFrequency;
