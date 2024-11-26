@@ -9,15 +9,9 @@ export const shortenResult = (
   }
 
   const shortenedResult = [...fullResult];
-  const processedRepetitions = new Set<number>();
+  let datumToDeleteIndex = shortenedResult.length - 1;
 
-  while (
-    shortenedResult.length > neededLength &&
-    shortenedResult.length !== processedRepetitions.size
-  ) {
-    const datumToDeleteIndex = shortenedResult.findLastIndex(
-      (datum) => !processedRepetitions.has(datum.repetitionsAmount),
-    );
+  while (shortenedResult.length > neededLength && datumToDeleteIndex >= 0) {
     const datumToDelete = shortenedResult[datumToDeleteIndex];
 
     const similarDatum = shortenedResult.findLast(
@@ -29,9 +23,9 @@ export const shortenResult = (
     if (similarDatum) {
       similarDatum.entity += `, ${datumToDelete.entity}`;
       shortenedResult.splice(datumToDeleteIndex, 1);
-    } else {
-      processedRepetitions.add(datumToDelete.repetitionsAmount);
     }
+
+    datumToDeleteIndex -= 1;
   }
 
   return shortenedResult;
