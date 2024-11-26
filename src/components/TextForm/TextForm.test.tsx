@@ -19,6 +19,12 @@ describe('TextForm', () => {
     ).toBeInTheDocument();
   });
 
+  it('should display a clear button', () => {
+    render(<TextForm maxChars={10} onSubmit={() => null} />);
+
+    expect(screen.getByRole('button', { name: /clear/i })).toBeInTheDocument();
+  });
+
   it('restricts input to a maximum of 2048 characters', async () => {
     const charsQuantity = 10;
     const { user } = renderWithUser(
