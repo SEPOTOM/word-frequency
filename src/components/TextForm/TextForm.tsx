@@ -24,21 +24,30 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-y-3 px-2">
-      <div
-        id="character-counter"
-        role="status"
-        aria-live="polite"
-        className="text-xl font-bold text-main"
-      >
-        Characters left:{' '}
-        <span
-          className={clsx(
-            'font-black',
-            remainingChars < maxCharsTenPercent && 'text-error',
-          )}
+      <div className="flex items-center justify-between gap-5">
+        <div
+          id="character-counter"
+          role="status"
+          aria-live="polite"
+          className="text-xl font-bold text-main"
         >
-          {remainingChars}
-        </span>
+          Characters left:{' '}
+          <span
+            className={clsx(
+              'font-black',
+              remainingChars < maxCharsTenPercent && 'text-error',
+            )}
+          >
+            {remainingChars}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          className="rounded-md border-2 border-error bg-inherit px-2 text-xl font-bold text-error transition-colors hover:bg-error hover:text-secondary active:border-error-dark active:bg-error-dark active:transition-none"
+        >
+          Clear
+        </button>
       </div>
       <textarea
         value={text}
