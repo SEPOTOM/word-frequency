@@ -1,19 +1,19 @@
 import { render, screen } from '@testing-library/react';
 
 import App from '@/App';
+import { OPTIONS_NAMES } from '@/components/ParsingOptionsPanel/consts';
 import { renderWithUser } from '@/tests/utils';
-import { ParsingOptions } from '@/types';
 
 describe('Parsing option should have correct default values', () => {
   it('caseSensitive should be checked', () => {
-    const optionName = 'caseSensitive' satisfies keyof ParsingOptions;
+    const optionName = OPTIONS_NAMES.caseSensitive;
     render(<App />);
 
     expect(screen.getByRole('checkbox', { name: optionName })).toBeChecked();
   });
 
   it('lettersOnly should be unchecked', () => {
-    const optionName = 'lettersOnly' satisfies keyof ParsingOptions;
+    const optionName = OPTIONS_NAMES.lettersOnly;
     render(<App />);
 
     expect(
@@ -24,7 +24,7 @@ describe('Parsing option should have correct default values', () => {
 
 describe('App', () => {
   it('should ignore the case of words when the caseSensitive is unchecked', async () => {
-    const optionName = 'caseSensitive' satisfies keyof ParsingOptions;
+    const optionName = OPTIONS_NAMES.caseSensitive;
     const { user } = renderWithUser(<App />);
 
     await user.click(screen.getByRole('checkbox', { name: optionName }));
@@ -35,7 +35,7 @@ describe('App', () => {
   });
 
   it('should calculate the number of each letter when the lettersOnly is checked', async () => {
-    const optionName = 'lettersOnly' satisfies keyof ParsingOptions;
+    const optionName = OPTIONS_NAMES.lettersOnly;
     const { user } = renderWithUser(<App />);
 
     await user.click(screen.getByRole('checkbox', { name: optionName }));
