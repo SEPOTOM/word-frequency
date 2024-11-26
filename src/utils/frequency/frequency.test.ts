@@ -73,4 +73,21 @@ describe('shortenResult', () => {
     expect(result[1].entity).toBe('Word, Adam');
     expect(result[2].entity).toBe('Pill, Lipstick');
   });
+
+  it("should return an array with a bigger length if there's no more elements to squash", () => {
+    const input: [FrequencyDatum[], number] = [
+      [
+        { entity: 'Test', repetitionsAmount: 5 },
+        { entity: 'Word', repetitionsAmount: 3 },
+        { entity: 'Adam', repetitionsAmount: 3 },
+        { entity: 'Pill', repetitionsAmount: 2 },
+        { entity: 'Lipstick', repetitionsAmount: 1 },
+      ],
+      3,
+    ];
+
+    const result = shortenResult(...input);
+
+    expect(result.length).toBe(4);
+  });
 });
