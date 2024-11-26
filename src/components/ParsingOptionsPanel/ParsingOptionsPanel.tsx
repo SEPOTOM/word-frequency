@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { Checkbox } from '@/components';
+import { OPTIONS_NAMES } from '@/components/ParsingOptionsPanel/consts';
 import { CheckboxChangeEvent, ParsingOptions } from '@/types';
 
 import { ParsingOptionsPanelProps } from './types';
@@ -30,7 +31,7 @@ const ParsingOptionsPanel: FC<ParsingOptionsPanelProps> = ({
             className="last:border-b-2 last:border-main last:pb-2"
           >
             <label className="flex items-center justify-between gap-x-3">
-              {optionKey}
+              {OPTIONS_NAMES[optionKey as keyof ParsingOptions]}
               <Checkbox
                 name={optionKey}
                 checked={options[optionKey as keyof ParsingOptions]}
