@@ -11,7 +11,10 @@ export const shortenResult = (
   const shortenedResult = [...fullResult];
   const processedRepetitions = new Set<number>();
 
-  while (shortenedResult.length > neededLength) {
+  while (
+    shortenedResult.length > neededLength &&
+    shortenedResult.length !== processedRepetitions.size
+  ) {
     const datumToDeleteIndex = shortenedResult.findLastIndex(
       (datum) => !processedRepetitions.has(datum.repetitionsAmount),
     );
