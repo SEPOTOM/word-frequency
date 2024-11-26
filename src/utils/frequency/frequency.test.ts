@@ -55,4 +55,22 @@ describe('shortenResult', () => {
 
     expect(result[1].entity).toBe('Word, Adam, Pill, Lipstick');
   });
+
+  it("shouldn't mix elements with different amount of repetitions", () => {
+    const input: [FrequencyDatum[], number] = [
+      [
+        { entity: 'Test', repetitionsAmount: 5 },
+        { entity: 'Word', repetitionsAmount: 3 },
+        { entity: 'Adam', repetitionsAmount: 3 },
+        { entity: 'Pill', repetitionsAmount: 2 },
+        { entity: 'Lipstick', repetitionsAmount: 2 },
+      ],
+      3,
+    ];
+
+    const result = shortenResult(...input);
+
+    expect(result[1].entity).toBe('Word, Adam');
+    expect(result[2].entity).toBe('Pill, Lipstick');
+  });
 });
