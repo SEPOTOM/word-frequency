@@ -9,13 +9,25 @@ export const shortenResult = (
   }
 
   const shortenedResult = [...fullResult];
+  const processedRepetitions = new Set<number>();
 
   while (shortenedResult.length > neededLength) {
-    const deletedDatum = shortenedResult.pop();
-    const lastDatum = shortenedResult.at(-1);
+    const datumToDeleteIndex = shortenedResult.findLastIndex(
+      (datum) => !processedRepetitions.has(datum.repetitionsAmount),
+    );
+    const datumToDelete = shortenedResult[datumToDeleteIndex];
 
-    if (lastDatum) {
-      lastDatum.entity += `, ${deletedDatum?.entity}`;
+    const similarDatum = shortenedResult.findLast(
+      (datum, index) =>
+        index < datumToDeleteIndex &&
+        datumToDelete.repetitionsAmount === datum.repetitionsAmount,
+    );
+
+    if (similarDatum) {
+      similarDatum.entity += `, ${datumToDelete.entity}`;
+      shortenedResult.splice(datumToDeleteIndex, 1);
+    } else {
+      processedRepetitions.add(datumToDelete.repetitionsAmount);
     }
   }
 
