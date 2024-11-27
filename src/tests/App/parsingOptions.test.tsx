@@ -20,6 +20,15 @@ describe('Parsing option should have correct default values', () => {
       screen.getByRole('checkbox', { name: optionName }),
     ).not.toBeChecked();
   });
+
+  it('symbolsOnly should be unchecked', () => {
+    const optionName = OPTIONS_NAMES.symbolsOnly;
+    render(<App />);
+
+    expect(
+      screen.getByRole('checkbox', { name: optionName }),
+    ).not.toBeChecked();
+  });
 });
 
 describe('App', () => {
