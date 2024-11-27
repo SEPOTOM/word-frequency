@@ -14,6 +14,7 @@ const App = () => {
   const [parsingOptions, setParsingOptions] = useState<ParsingOptions>({
     caseSensitive: true,
     lettersOnly: false,
+    symbolsOnly: false,
   });
   const wordsFrequency = useWordsFrequency(text, parsingOptions);
 
