@@ -29,8 +29,10 @@ const Checkbox: FC<CheckboxProps> = ({ name, checked, onChange, disabled }) => {
       disabled={disabled}
       onClick={handleToggle}
       onKeyDown={handleKeyDown}
-      className="group h-7 w-7 rounded-md border-2 border-main p-1 disabled:border-disabled"
+      className="group relative h-7 w-7 rounded-md border-2 border-main p-1 disabled:border-disabled"
     >
+      <span className="invisible absolute left-1/2 top-1/2 h-1 w-[132%] -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-disabled group-disabled:visible" />
+      <span className="invisible absolute left-1/2 top-1/2 h-1 w-[132%] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-disabled group-disabled:visible" />
       <div
         className={clsx(
           'h-full w-full rounded-sm',
