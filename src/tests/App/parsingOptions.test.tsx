@@ -59,4 +59,23 @@ describe('App', () => {
     expect(screen.getByRole('row', { name: /a 1/ })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: /g 1/ })).toBeInTheDocument();
   });
+
+  it('should calculate the number of non-words symbols when the symbolsOnly is checked', async () => {
+    const optionName = OPTIONS_NAMES.symbolsOnly;
+    const { user } = renderWithUser(<App />);
+
+    await user.click(screen.getByRole('checkbox', { name: optionName }));
+    await user.type(
+      screen.getByRole('textbox'),
+      'H! awg @ test.. Hello, Tom?!',
+    );
+    await user.click(screen.getByRole('button', { name: /translate/i }));
+
+    expect(screen.getAllByRole('row').length).toBe(5);
+    expect(screen.getByRole('row', { name: /! 2/ })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: /@ 1/ })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: /\. 2/ })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: /, 1/ })).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: /\? 1/ })).toBeInTheDocument();
+  });
 });
