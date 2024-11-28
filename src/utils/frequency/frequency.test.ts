@@ -90,4 +90,22 @@ describe('shortenResult', () => {
 
     expect(result.length).toBe(4);
   });
+
+  it('should have the ability to accept a custom separator', () => {
+    const input: [FrequencyDatum[], number, string] = [
+      [
+        { entity: 'Test', repetitionsAmount: 1 },
+        { entity: 'Word', repetitionsAmount: 1 },
+        { entity: 'Adam', repetitionsAmount: 1 },
+        { entity: 'Pill', repetitionsAmount: 1 },
+        { entity: 'Lipstick', repetitionsAmount: 1 },
+      ],
+      3,
+      ' | ',
+    ];
+
+    const result = shortenResult(...input);
+
+    expect(result[2].entity).toBe('Adam | Pill | Lipstick');
+  });
 });
