@@ -8,7 +8,7 @@ const useWordsFrequency = (
   text: string,
   options?: ParsingOptions,
 ): FrequencyDatum[] => {
-  let words: string[] | Set<string> = [];
+  let words: string[] = [];
 
   if (options?.symbolsOnly) {
     words = text.match(/[^\w\s]/g) ?? [];
