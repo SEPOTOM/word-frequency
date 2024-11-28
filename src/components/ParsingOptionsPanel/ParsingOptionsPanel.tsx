@@ -22,6 +22,16 @@ const ParsingOptionsPanel: FC<ParsingOptionsPanelProps> = ({
     });
   };
 
+  const isDisabled = (optionName: keyof ParsingOptions): boolean => {
+    const blockingOptions = options[optionName].blockedBy;
+
+    if (blockingOptions === undefined) {
+      return false;
+    }
+
+    return blockingOptions.some((option) => options[option].checked);
+  };
+
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-y-3 px-2">
       <h3 className="bg-main py-1 text-center text-2xl font-bold text-secondary">
@@ -39,6 +49,7 @@ const ParsingOptionsPanel: FC<ParsingOptionsPanelProps> = ({
                 name={optionKey}
                 checked={options[optionKey as keyof ParsingOptions].checked}
                 onChange={onChange}
+                disabled={isDisabled(optionKey as keyof ParsingOptions)}
               />
             </label>
           </li>
