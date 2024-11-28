@@ -8,9 +8,15 @@ const useWordsFrequency = (
   text: string,
   options?: ParsingOptions,
 ): FrequencyDatum[] => {
-  const separator = options?.lettersOnly ? '' : /[\s\p{P}]+/u;
+  let words: string[] | Set<string> = [];
 
-  let words: string[] | Set<string> = text.split(separator);
+  if (options?.symbolsOnly) {
+    words = text.match(/[^\w\s]/g) ?? [];
+  } else {
+    const separator = options?.lettersOnly ? '' : /[\s\p{P}]+/u;
+
+    words = text.split(separator);
+  }
 
   if (!options?.caseSensitive) {
     words = words.map((word) => word.toLowerCase());
