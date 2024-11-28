@@ -3,6 +3,7 @@ import { FrequencyDatum } from '@/types';
 export const shortenResult = (
   fullResult: FrequencyDatum[],
   neededLength: number,
+  separator = ', ',
 ): FrequencyDatum[] => {
   if (fullResult.length <= neededLength) {
     return fullResult;
@@ -21,7 +22,7 @@ export const shortenResult = (
     );
 
     if (similarDatum) {
-      similarDatum.entity += `, ${datumToDelete.entity}`;
+      similarDatum.entity += `${separator}${datumToDelete.entity}`;
       shortenedResult.splice(datumToDeleteIndex, 1);
     }
 
