@@ -13,6 +13,7 @@ export default {
         secondary: '#F5F7DC',
         error: '#EA2B1F',
         'error-dark': '#A51F17',
+        disabled: '#231C07',
       },
     },
   },
