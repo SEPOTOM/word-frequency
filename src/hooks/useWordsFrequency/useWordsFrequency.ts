@@ -10,21 +10,21 @@ const useWordsFrequency = (
 ): FrequencyDatum[] => {
   let textParts: string[] = [];
 
-  if (options?.symbolsOnly) {
+  if (options?.symbolsOnly.checked) {
     textParts = text.match(/[^\w\s]/g) ?? [];
   } else {
-    const separator = options?.lettersOnly ? '' : /[\s\p{P}]+/u;
+    const separator = options?.lettersOnly.checked ? '' : /[\s\p{P}]+/u;
 
     textParts = text.split(separator);
   }
 
-  if (!options?.caseSensitive) {
+  if (!options?.caseSensitive.checked) {
     textParts = textParts.map((part) => part.toLowerCase());
   }
 
   let shouldIgnoreTextPart: Nullable<IgnoreFunc> = null;
 
-  if (options?.lettersOnly) {
+  if (options?.lettersOnly.checked) {
     shouldIgnoreTextPart = (part: string) => !isLetter(part);
   }
 
@@ -33,7 +33,7 @@ const useWordsFrequency = (
     (a, b) => b.repetitionsAmount - a.repetitionsAmount,
   );
 
-  const squashedTextPartsSeparator = options?.symbolsOnly ? ' ' : ', ';
+  const squashedTextPartsSeparator = options?.symbolsOnly.checked ? ' ' : ', ';
 
   return shortenResult(
     sortedResult,

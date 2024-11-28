@@ -15,7 +15,10 @@ const ParsingOptionsPanel: FC<ParsingOptionsPanelProps> = ({
 
     onOptionsChange({
       ...options,
-      [optionName]: e.target.checked,
+      [optionName]: {
+        ...options[optionName],
+        checked: e.target.checked,
+      },
     });
   };
 
@@ -34,7 +37,7 @@ const ParsingOptionsPanel: FC<ParsingOptionsPanelProps> = ({
               {OPTIONS_NAMES[optionKey as keyof ParsingOptions]}
               <Checkbox
                 name={optionKey}
-                checked={options[optionKey as keyof ParsingOptions]}
+                checked={options[optionKey as keyof ParsingOptions].checked}
                 onChange={onChange}
               />
             </label>

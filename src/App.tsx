@@ -12,9 +12,9 @@ import { ParsingOptions } from '@/types';
 const App = () => {
   const [text, setText] = useState('');
   const [parsingOptions, setParsingOptions] = useState<ParsingOptions>({
-    caseSensitive: true,
-    lettersOnly: false,
-    symbolsOnly: false,
+    caseSensitive: { checked: true },
+    lettersOnly: { checked: false },
+    symbolsOnly: { checked: false },
   });
   const wordsFrequency = useWordsFrequency(text, parsingOptions);
 
