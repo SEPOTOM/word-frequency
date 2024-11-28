@@ -30,6 +30,15 @@ describe('Parsing options', () => {
         screen.getByRole('checkbox', { name: optionName }),
       ).not.toBeChecked();
     });
+
+    it('compactAll should be unchecked', () => {
+      const optionName = OPTIONS_NAMES.compactAll;
+      render(<App />);
+
+      expect(
+        screen.getByRole('checkbox', { name: optionName }),
+      ).not.toBeChecked();
+    });
   });
 
   describe('should disable conflict options when checked', () => {
