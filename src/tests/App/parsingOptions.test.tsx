@@ -44,6 +44,18 @@ describe('Parsing options', () => {
         screen.getByRole('checkbox', { name: OPTIONS_NAMES.symbolsOnly }),
       ).toBeDisabled();
     });
+
+    it('symbolsOnly', async () => {
+      const { user } = renderWithUser(<App />);
+
+      await user.click(
+        screen.getByRole('checkbox', { name: OPTIONS_NAMES.symbolsOnly }),
+      );
+
+      expect(
+        screen.getByRole('checkbox', { name: OPTIONS_NAMES.lettersOnly }),
+      ).toBeDisabled();
+    });
   });
 });
 
