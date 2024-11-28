@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { CheckboxProps } from './types';
 
-const Checkbox: FC<CheckboxProps> = ({ name, checked, onChange }) => {
+const Checkbox: FC<CheckboxProps> = ({ name, checked, onChange, disabled }) => {
   const handleToggle = () => {
     const syntheticEvent = {
       target: { name, checked: !checked },
@@ -26,11 +26,17 @@ const Checkbox: FC<CheckboxProps> = ({ name, checked, onChange }) => {
       role="checkbox"
       aria-checked={checked}
       name={name}
+      disabled={disabled}
       onClick={handleToggle}
       onKeyDown={handleKeyDown}
-      className="h-7 w-7 rounded-md border-2 border-main p-1"
+      className="group h-7 w-7 rounded-md border-2 border-main p-1 disabled:border-disabled"
     >
-      <div className={clsx('h-full w-full rounded-sm', checked && 'bg-main')} />
+      <div
+        className={clsx(
+          'h-full w-full rounded-sm',
+          checked && 'bg-main group-disabled:bg-disabled',
+        )}
+      />
     </button>
   );
 };
