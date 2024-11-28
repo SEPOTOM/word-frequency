@@ -1,5 +1,10 @@
+export interface ParsingOption {
+  checked: boolean;
+  blockedBy?: (keyof ParsingOptions)[];
+}
+
 export interface ParsingOptions {
-  caseSensitive: boolean;
-  lettersOnly: boolean;
-  symbolsOnly: boolean;
+  caseSensitive: ParsingOption;
+  lettersOnly: ParsingOption;
+  symbolsOnly: ParsingOption;
 }
