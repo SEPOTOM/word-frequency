@@ -31,6 +31,20 @@ describe('Parsing options', () => {
       ).not.toBeChecked();
     });
   });
+
+  describe('should disable conflict options when checked', () => {
+    it('lettersOnly', async () => {
+      const { user } = renderWithUser(<App />);
+
+      await user.click(
+        screen.getByRole('checkbox', { name: OPTIONS_NAMES.lettersOnly }),
+      );
+
+      expect(
+        screen.getByRole('checkbox', { name: OPTIONS_NAMES.symbolsOnly }),
+      ).toBeDisabled();
+    });
+  });
 });
 
 describe('App', () => {
