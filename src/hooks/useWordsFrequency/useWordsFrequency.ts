@@ -8,27 +8,27 @@ const useWordsFrequency = (
   text: string,
   options?: ParsingOptions,
 ): FrequencyDatum[] => {
-  let words: string[] = [];
+  let textParts: string[] = [];
 
   if (options?.symbolsOnly) {
-    words = text.match(/[^\w\s]/g) ?? [];
+    textParts = text.match(/[^\w\s]/g) ?? [];
   } else {
     const separator = options?.lettersOnly ? '' : /[\s\p{P}]+/u;
 
-    words = text.split(separator);
+    textParts = text.split(separator);
   }
 
   if (!options?.caseSensitive) {
-    words = words.map((word) => word.toLowerCase());
+    textParts = textParts.map((part) => part.toLowerCase());
   }
 
-  let shouldIgnoreWord: Nullable<IgnoreFunc> = null;
+  let shouldIgnoreTextPart: Nullable<IgnoreFunc> = null;
 
   if (options?.lettersOnly) {
-    shouldIgnoreWord = (word: string) => !isLetter(word);
+    shouldIgnoreTextPart = (part: string) => !isLetter(part);
   }
 
-  const result = calculateFrequency(words, shouldIgnoreWord);
+  const result = calculateFrequency(textParts, shouldIgnoreTextPart);
   const sortedResult = result.sort(
     (a, b) => b.repetitionsAmount - a.repetitionsAmount,
   );
