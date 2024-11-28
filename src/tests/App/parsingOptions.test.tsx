@@ -78,4 +78,20 @@ describe('App', () => {
     expect(screen.getByRole('row', { name: /, 1/ })).toBeInTheDocument();
     expect(screen.getByRole('row', { name: /\? 1/ })).toBeInTheDocument();
   });
+
+  it('should use a different separator for squashed data if the symbolsOnly is checked', async () => {
+    const optionName = OPTIONS_NAMES.symbolsOnly;
+    const { user } = renderWithUser(<App />);
+
+    await user.click(screen.getByRole('checkbox', { name: optionName }));
+    await user.type(
+      screen.getByRole('textbox'),
+      '!@#$%^&*()_+-=[[\\]{{\\}|;:\',.<>?/`~"',
+    );
+    await user.click(screen.getByRole('button', { name: /translate/i }));
+
+    expect(
+      screen.getByRole('row', { name: /\? \/ ` ~ " 1/ }),
+    ).toBeInTheDocument();
+  });
 });
