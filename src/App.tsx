@@ -15,6 +15,7 @@ const App = () => {
     caseSensitive: { checked: true },
     lettersOnly: { checked: false, blockedBy: ['symbolsOnly'] },
     symbolsOnly: { checked: false, blockedBy: ['lettersOnly'] },
+    compactAll: { checked: false },
   });
   const wordsFrequency = useWordsFrequency(text, parsingOptions);
 
