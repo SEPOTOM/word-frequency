@@ -131,4 +131,24 @@ describe('App', () => {
       screen.getByRole('row', { name: /\? \/ ` ~ " 1/ }),
     ).toBeInTheDocument();
   });
+
+  it('should squash all elements with the same repetitions if the compactAll is checked', async () => {
+    const { user } = renderWithUser(<App />);
+
+    await user.click(
+      screen.getByRole('checkbox', { name: OPTIONS_NAMES.compactAll }),
+    );
+    await user.type(
+      screen.getByRole('textbox'),
+      'test test adam adam word word word button button button',
+    );
+    await user.click(screen.getByRole('button', { name: /translate/i }));
+
+    expect(
+      screen.getByRole('row', { name: /test, adam 2/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('row', { name: /word, button 3/i }),
+    ).toBeInTheDocument();
+  });
 });
