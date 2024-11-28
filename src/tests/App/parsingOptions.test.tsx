@@ -4,30 +4,32 @@ import App from '@/App';
 import { OPTIONS_NAMES } from '@/components/ParsingOptionsPanel/consts';
 import { renderWithUser } from '@/tests/utils';
 
-describe('Parsing option should have correct default values', () => {
-  it('caseSensitive should be checked', () => {
-    const optionName = OPTIONS_NAMES.caseSensitive;
-    render(<App />);
+describe('Parsing options', () => {
+  describe('should have correct default values', () => {
+    it('caseSensitive should be checked', () => {
+      const optionName = OPTIONS_NAMES.caseSensitive;
+      render(<App />);
 
-    expect(screen.getByRole('checkbox', { name: optionName })).toBeChecked();
-  });
+      expect(screen.getByRole('checkbox', { name: optionName })).toBeChecked();
+    });
 
-  it('lettersOnly should be unchecked', () => {
-    const optionName = OPTIONS_NAMES.lettersOnly;
-    render(<App />);
+    it('lettersOnly should be unchecked', () => {
+      const optionName = OPTIONS_NAMES.lettersOnly;
+      render(<App />);
 
-    expect(
-      screen.getByRole('checkbox', { name: optionName }),
-    ).not.toBeChecked();
-  });
+      expect(
+        screen.getByRole('checkbox', { name: optionName }),
+      ).not.toBeChecked();
+    });
 
-  it('symbolsOnly should be unchecked', () => {
-    const optionName = OPTIONS_NAMES.symbolsOnly;
-    render(<App />);
+    it('symbolsOnly should be unchecked', () => {
+      const optionName = OPTIONS_NAMES.symbolsOnly;
+      render(<App />);
 
-    expect(
-      screen.getByRole('checkbox', { name: optionName }),
-    ).not.toBeChecked();
+      expect(
+        screen.getByRole('checkbox', { name: optionName }),
+      ).not.toBeChecked();
+    });
   });
 });
 
