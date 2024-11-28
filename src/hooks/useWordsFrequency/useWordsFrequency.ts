@@ -33,13 +33,10 @@ const useWordsFrequency = (
     (a, b) => b.repetitionsAmount - a.repetitionsAmount,
   );
 
+  const resultLength = options?.compactAll.checked ? 1 : FREQUENCY_DATUM_AMOUNT;
   const squashedTextPartsSeparator = options?.symbolsOnly.checked ? ' ' : ', ';
 
-  return shortenResult(
-    sortedResult,
-    FREQUENCY_DATUM_AMOUNT,
-    squashedTextPartsSeparator,
-  );
+  return shortenResult(sortedResult, resultLength, squashedTextPartsSeparator);
 };
 
 export default useWordsFrequency;
