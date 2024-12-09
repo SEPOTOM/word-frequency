@@ -24,6 +24,7 @@ const TextForm: FC<TextFormProps> = ({ maxChars, onSubmit }) => {
 
   const handleClear = () => {
     setText('');
+    onSubmit('');
   };
 
   return (
