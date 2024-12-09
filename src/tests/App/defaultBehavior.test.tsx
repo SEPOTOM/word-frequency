@@ -48,4 +48,14 @@ describe('App', () => {
     expect(screen.getByRole('cell', { name: 'a' })).toBeInTheDocument();
     expect(screen.getByRole('cell', { name: 'test' })).toBeInTheDocument();
   });
+
+  it('should hide the table after clicking the clear button', async () => {
+    const { user } = renderWithUser(<App />);
+    await user.type(screen.getByRole('textbox'), 'test');
+    await user.click(screen.getByRole('button', { name: /translate/i }));
+
+    await user.click(screen.getByRole('button', { name: /clear/i }));
+
+    expect(screen.queryByRole('table')).not.toBeInTheDocument();
+  });
 });
