@@ -1,1 +1,0 @@
-export const FREQUENCY_DATUM_AMOUNT = 26;
